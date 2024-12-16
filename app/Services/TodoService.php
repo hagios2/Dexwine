@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Requests\StoreTodoRequest;
+use App\Http\Requests\TodoRequest;
 use App\Http\Resources\TodoCollection;
 use App\Http\Resources\TodoResource;
 use App\Models\Todo;
@@ -33,7 +33,7 @@ class TodoService
         return new TodoCollection($todos);
     }
 
-    public function store(StoreTodoRequest $request): JsonResponse
+    public function store(TodoRequest $request): JsonResponse
     {
         $todo = Todo::create($request->validated());
 
@@ -51,7 +51,7 @@ class TodoService
         ]);
     }
 
-    public function update(Todo $todo, StoreTodoRequest $request): JsonResponse
+    public function update(Todo $todo, TodoRequest $request): JsonResponse
     {
         $todo->update($request->validated());
 

@@ -138,23 +138,24 @@ class TodoTest extends TestCase
 
     public function testUpdateTodo()
     {
-        $todo = Todo::factory()->create();
+        $todo = Todo::factory()->create(['status' => 'in progress']);
 
         $payload = [
             'title' => $this->faker->title ,
             'details' => $this->faker->sentence,
+            'status' => 'completed'
         ];
 
         $response = $this->putJson("/api/todos/{$todo->id}", $payload);
 
+        //add id to payload
+        Arr::set($payload, 'id', $todo->id);
+
+        //assert payload is return
         $response->assertStatus(200)
                  ->assertJson([
                      'message' => 'Todo updated successfully',
-                     'data' => [
-                         'id' => $todo->id,
-                         'title' => Arr::get($payload, 'title'),
-                         'details' => Arr::get($payload, 'details'),
-                     ],
+                     'data' => $payload,
                  ]);
 
         $this->assertDatabaseHas('todos', $payload);

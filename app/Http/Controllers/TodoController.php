@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTodoRequest;
+use App\Http\Requests\TodoRequest;
 use App\Http\Requests\UpdateTodoRequest;
 use App\Http\Resources\TodoCollection;
 use App\Models\Todo;
@@ -21,7 +21,7 @@ class TodoController extends Controller
         return $this->service->index($request);
     }
 
-    public function store(StoreTodoRequest $request): JsonResponse
+    public function store(TodoRequest $request): JsonResponse
     {
         return $this->service->store($request);
     }
@@ -31,7 +31,7 @@ class TodoController extends Controller
         return $this->service->show($todo);
     }
 
-    public function update(StoreTodoRequest $request, Todo $todo): JsonResponse
+    public function update(TodoRequest $request, Todo $todo): JsonResponse
     {
         return $this->service->update($todo, $request);
     }
