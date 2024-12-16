@@ -31,7 +31,7 @@ class TodoController extends Controller
         return $this->service->show($todo);
     }
 
-    public function update(UpdateTodoRequest $request, Todo $todo): JsonResponse
+    public function update(StoreTodoRequest $request, Todo $todo): JsonResponse
     {
         return $this->service->update($todo, $request);
     }

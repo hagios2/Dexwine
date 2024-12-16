@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->string('title')->index();
-            $table->longText('details')->index();
-            $table->enum('status', ['in progress', 'completed', 'not started'])->default('pending')->index();
+            $table->text('details');
+            $table->enum('status', ['in progress', 'completed', 'not started'])->default('in progress')->index();
             $table->timestamps();
         });
     }

@@ -23,7 +23,7 @@ class TodoService
         if ($request->filled('keyword')) {
             $query->where(fn($query) => [
                 $query->where('title', 'like', "%{$request->keyword}%")
-                    ->where('details', 'like', "%{$request->keyword}%")
+                    ->orWhere('details', 'like', "%{$request->keyword}%")
                 ]
             );
         }
@@ -38,7 +38,7 @@ class TodoService
         $todo = Todo::create($request->validated());
 
         return response()->json([
-            'message' => 'Todo deleted successfully',
+            'message' => 'Created todo successfully',
             'data' => new TodoResource($todo->refresh())
         ], 201);
     }

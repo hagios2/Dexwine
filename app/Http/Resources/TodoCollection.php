@@ -22,7 +22,7 @@ class TodoCollection extends ResourceCollection
                     'title' => $todo->title,
                     'status' => $todo->status,
                     'details' => $todo->details,
-                    'created_at' => $todo->created_at->format('')
+                    'created_at' => $todo->created_at->format('D, d F Y')
                 ];
             }),
             'links' => [

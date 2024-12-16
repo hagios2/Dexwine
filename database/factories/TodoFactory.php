@@ -17,7 +17,9 @@ class TodoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->title,
+            'details' => $this->faker->paragraph,
+            'status' => $this->faker->randomElement(['in progress', 'completed', 'not started']),
         ];
     }
 }
